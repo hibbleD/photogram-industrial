@@ -3,16 +3,25 @@ task({ :sample_data => :environment }) do
   p "creating sample data"
 
   if Rails.env.development?
-    FollowRequest.destroy_all
-    User.destroy_all
+    FollowRequest.delete_all
+    Comment.delete_all
+    Like.delete_all
+    Photo.delete_all
+    User.delete_all
   end
 
-  12.times do
-    name = Faker::Name.first_name.downcase
-    u = User.create(
-      email: "#{name}@example.com",
+    usernames = Array.new {Faker::Name.first_name }
+
+    usernames << "alice"
+    usernames << "bob"
+
+
+
+  usernames.each do |username|
+    User.create(
+      email: "#{username}@example.com",
       password: "password",
-      username: name,
+      username: username.downcase,
       private: [true, false].sample,
     )
   end
