@@ -5,7 +5,9 @@ class PhotosController < ApplicationController
   def index
     @photos = Photo.all
   end
-
+  def liked
+     @user= User.find_by!(username: params.fetch(:username))
+  end
   # GET /photos/1 or /photos/1.json
   def show
   end
