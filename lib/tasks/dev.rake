@@ -9,6 +9,15 @@ task({ :sample_data => :environment }) do
     Photo.delete_all
     User.delete_all
   end
+12.times do
+    User.create(
+      email: "#{Faker::Name.first_name.downcase}@example.com",
+      password: "password",
+      username: Faker::Name.first_name.downcase,
+      private: [true, false].sample,
+    )
+  end
+
 
     usernames = Array.new {Faker::Name.first_name }
 
