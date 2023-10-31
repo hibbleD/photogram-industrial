@@ -1,0 +1,11 @@
+<div class="row">
+  <%= render "shared/profilebar" %>
+</div>
+
+<%= current_user.followers.count %>
+
+
+ <% current_user.followers.each do |user| %>
+  <%= render "shared/follow" , user: user %>
+
+<% end %>
